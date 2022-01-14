@@ -1,0 +1,17 @@
+<h2>Top 10 properties with most bids against them</h2>
+<table >
+<thead>
+<tr>
+  <td> Property ID </td>
+  <td> Bid Count </td>
+  </tr>
+</thead>
+<tbody>
+<% @data.each do|row| %>
+ <tr>
+  <td> <%= row[:id] %> </td>
+  <td> <%= row[:bid_count] %> </td>
+  </tr>
+<%end%>
+</tbody>
+</table>
