@@ -1,0 +1,21 @@
+<h2><%= @desc %></h2>
+<table >
+  <thead>
+    <tr>
+      <td> Property ID </td>
+      <td> Price </td>
+      <td> corridinates(X,Y) </td>
+      <td> Date </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @data.each do|row| %>
+      <tr>
+        <td> <%= row[:nft][:id] %> </td>
+        <td> <%= row[:price] %> </td>
+        <td> <%= row[:nft][:parcel][:x] %> , <%= row[:nft][:parcel][:y] %> </td>
+        <td> <%= Time.at(row[:timestamp].to_i).strftime '%Y-%m-%d' %> </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

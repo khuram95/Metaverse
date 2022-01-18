@@ -1,0 +1,23 @@
+<h2><%= @desc %></h2>
+<table >
+  <thead>
+    <tr>
+      <td> Property ID </td>
+      <td> Price </td>
+      <td> Seller </td>
+      <td> Buyer </td>
+      <td> Date </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @data.each do|row| %>
+      <tr>
+        <td> <%= truncate(row[:nft][:id], :length => 50) %> </td>
+        <td> <%= row[:price] %> </td>
+        <td> <%= row[:seller] %> </td>
+        <td> <%= row[:buyer] %> </td>
+        <td> <%= Time.at(row[:timestamp].to_i).strftime '%Y-%m-%d' %> </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

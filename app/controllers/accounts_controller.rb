@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
 
   def index
     @data = accounts
-    @properties = false
+    @accounts = true
   end
 
   private

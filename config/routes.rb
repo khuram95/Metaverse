@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   root to: 'accounts#index'
   resources :accounts
   resources :properties
+  get '/expensive_properties', to: 'properties#most_expensive'
+  get '/least_expensive', to: 'properties#least_expensive'
+  get '/transactions', to: 'properties#transactions'
 end

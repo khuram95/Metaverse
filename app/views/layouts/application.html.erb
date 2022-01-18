@@ -19,6 +19,7 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  white-space: nowrap;
 }
 
 tr:nth-child(even) {
@@ -52,6 +53,15 @@ li a:hover:not(.active) {
 .active {
   background-color: #04AA6D;
 }
+
+#navbar ul {
+position:absolute;
+padding:0;
+left:0;
+display:none; /* hides sublists */
+}
+
+#navbar li:hover ul {display:block;}
 </style>
 
 <script>
@@ -61,10 +71,17 @@ var header = document.location.pathname;
   </head>
   <body>
   <ul id="navbar">
-    <li><a class="<%= 'active' if !@properties  %>" href="/">Account</a></li>
-    <li><a class="<%= 'active' if @properties  %>"href="/properties">Properties</a></li>
+    <li><a class="<%= 'active' if @accounts  %>" href="/">Account</a></li>
+    <li>
+    <a class="<%= 'active' if @properties  %>" href="/properties">Properties</a>
+      <ul>
+        <li><a href="/properties">Most bids</a></li>
+        <li><a href="/expensive_properties">Expensive</a></li>
+        <li><a href="/least_expensive">Cheap</a></li>
+      </ul>
+    </li>
+    <li><a class="<%= 'active' if @transactions  %>" href="/transactions">Recent Transactions</a></li>
   </ul>
-    <h1><%= @properties %></h1>
     <%= yield %>
   </body>
 </html>
