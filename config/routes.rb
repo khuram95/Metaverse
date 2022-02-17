@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get '/expensive_properties', to: 'properties#most_expensive'
   get '/least_expensive', to: 'properties#least_expensive'
   get '/transactions', to: 'properties#transactions'
+  get '/recent_listed', to: 'properties#recent_listed'
 end

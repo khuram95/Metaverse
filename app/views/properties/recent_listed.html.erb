@@ -4,7 +4,9 @@
     <tr>
       <td> Property ID </td>
       <td> Image </td>
-      <td> Price </td>
+      <%if !@is_graphql %>
+        <td> Price </td> 
+      <% end %>
       <td> corridinates(X,Y) </td>
       <td> Date </td>
       <td> Link </td>
@@ -14,12 +16,11 @@
     <% @data.each do|row| %>
       <% if @is_graphql %>
         <tr>
-          <td> <%= truncate(row[:nft][:id], :length => 50) %> </td>
-          <td> <img src="<%= row[:nft][:image] %>" style="height: 100px"> </td>
-          <td> <%= (row[:price].to_i / 1000000000000000000 ) %> </td>
-          <td> <%= row[:nft][:parcel][:x] %> , <%= row[:nft][:parcel][:y] %> </td>
-          <td> <%= Time.at(row[:timestamp].to_i).strftime '%Y-%m-%d' %> </td>
-          <td><a href="https://market.decentraland.org/contracts/<%= row[:nft][:contractAddress] %>/tokens/<%= row[:nft][:tokenId] %>" >Link</a> </td>
+          <td> <%= truncate(row[:id], :length => 50) %> </td>
+          <td> <img src="<%= row[:image] %>" style="height: 100px"> </td>
+          <td> <%= row[:parcel][:x] %> , <%= row[:parcel][:y] %> </td>
+          <td> <%= Time.at(row[:createdAt].to_i).strftime '%Y-%m-%d' %> </td>
+          <td><a href="https://market.decentraland.org/contracts/<%= row[:contractAddress] %>/tokens/<%= row[:tokenId] %>" >Link</a> </td>
         </tr>
       <% else %>
         <% if @data.nil? %>

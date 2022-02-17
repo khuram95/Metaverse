@@ -7,66 +7,71 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-  white-space: nowrap;
-}
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        white-space: nowrap;
+      }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
 
-li {
-  float: left;
-}
+      li {
+        float: left;
+      }
 
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
 
-li a:hover:not(.active) {
-  background-color: #111;
-}
+      li a:hover:not(.active) {
+        background-color: #111;
+      }
 
-.active {
-  background-color: #04AA6D;
-}
+      .active {
+        background-color: #04AA6D;
+      }
 
-#navbar ul {
-position:absolute;
-padding:0;
-left:0;
-display:none; /* hides sublists */
-}
+      #navbar ul {
+      position:absolute;
+      padding:0;
+      left:0;
+      display:none; /* hides sublists */
+      }
 
-#navbar li:hover ul {display:block;}
-</style>
+      #navbar li:hover ul {display:block;}
+    </style>
 
 <script>
-// Add active class to the current button (highlight it)
-var header = document.location.pathname;
+  // Add active class to the current button (highlight it)
+  var header = document.location.pathname;
+  function myFunction(params) {
+    window.location.href = window.location.origin + window.location.pathname + "?graphql=" + params;
+    // localStorage.setItem("essay", params);
+    // location.reload();
+  }
 </script>
   </head>
   <body>
@@ -81,6 +86,11 @@ var header = document.location.pathname;
       </ul>
     </li>
     <li><a class="<%= 'active' if @transactions  %>" href="/transactions">Recent Transactions</a></li>
+    <li><a class="<%= 'active' if @recent_listed  %>" href="/recent_listed">Recent Listed</a></li>
+    <div style="float: right">
+    <li><a class="<%= 'active' if @is_graphql  %>" onclick="myFunction(true)">GraphQL</a></li>
+    <li><a class="<%= 'active' unless @is_graphql  %>" onclick="myFunction(false)">HTTP</a></li>
+    </div>
   </ul>
     <%= yield %>
   </body>

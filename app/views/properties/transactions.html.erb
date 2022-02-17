@@ -3,21 +3,41 @@
   <thead>
     <tr>
       <td> Property ID </td>
+      <td> Image </td>
       <td> Price </td>
-      <td> Seller </td>
-      <td> Buyer </td>
+      <% if @is_graphql %>
+        <td> Seller </td>
+        <td> Buyer </td>
+      <% else %>
+        <td> Owner </td>
+      <% end %>
       <td> Date </td>
     </tr>
   </thead>
   <tbody>
     <% @data.each do|row| %>
-      <tr>
-        <td> <%= truncate(row[:nft][:id], :length => 50) %> </td>
-        <td> <%= row[:price] %> </td>
-        <td> <%= row[:seller] %> </td>
-        <td> <%= row[:buyer] %> </td>
-        <td> <%= Time.at(row[:timestamp].to_i).strftime '%Y-%m-%d' %> </td>
-      </tr>
+      <% if @is_graphql %>
+        <tr>
+          <td> <%= truncate(row[:nft][:id], :length => 50) %> </td>
+          <td> <img src="<%= row[:nft][:image] %>" style="height: 100px"> </td>
+          <td> <%= (row[:price].to_i / 1000000000000000000 ) %> </td>
+          <td> <%= row[:seller] %> </td>
+          <td> <%= row[:buyer] %> </td>
+          <td> <%= Time.at(row[:timestamp].to_i).strftime '%Y-%m-%d' %> </td>
+        </tr>
+       <% else %>
+        <% if @data.nil? %>
+        <h4>Comming Soon......</h4>
+        <%else%>
+          <tr>
+            <td> <%=  truncate(row['nft']['id'], :length => 50) %> </td>
+            <td> <img src="<%= row['nft']['image'] %>" style="height: 100px"> </td>
+            <td> <%= (row['order']['price'].to_i / 1000000000000000000 ) %> </td>
+            <td> <%= row['order']['owner'] %> </td>
+            <td> <%= Time.at(row['nft']['createdAt'].to_i/1000).strftime '%Y-%m-%d' %> </td>
+          </tr>
+        <%end%>
+      <%end%>
     <%end%>
   </tbody>
 </table>

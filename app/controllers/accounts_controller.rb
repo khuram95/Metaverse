@@ -1,6 +1,8 @@
 require 'httparty'
 class AccountsController < ApplicationController
 
+  before_action :set_endpoint
+
   def index
     @data = accounts
     @accounts = true

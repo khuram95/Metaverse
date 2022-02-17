@@ -16,10 +16,10 @@
   <tr>
   <td> <%= row[:onwer_id] %> </td>
   <td> <%= row[:data][:address] %> </td>
-  <td> <%= row[:data][:earned] %> </td>
+  <td> <%= (row[:data][:earned].to_i / 1000000000000000000 ) %> </td>
   <td> <%= row[:data][:sales] %> </td>
   <td> <%= row[:data][:purchases] %> </td>
-  <td> <%= row[:data][:spent] %> </td>
+  <td> <%= (row[:data][:spent].to_i / 1000000000000000000 ) %> </td>
   <td> <%= row[:parcels_count] %> </td>
   </tr>
 <%end%>
