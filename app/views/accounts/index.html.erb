@@ -16,10 +16,10 @@
   <tr>
   <td> <%= row[:onwer_id] %> </td>
   <td> <%= row[:data][:address] %> </td>
-  <td> <%= (row[:data][:earned].to_i / 1000000000000000000 ) %> </td>
+  <td> $<%= number_to_human((row[:data][:earned].to_i / 1000000000000000000 ) * @mana_rate, format: '%n%u', precision: 4, units: { thousand: 'K', million: 'M' })%> </td>
   <td> <%= row[:data][:sales] %> </td>
   <td> <%= row[:data][:purchases] %> </td>
-  <td> <%= (row[:data][:spent].to_i / 1000000000000000000 ) %> </td>
+  <td> $<%= number_to_human((row[:data][:spent].to_i / 1000000000000000000 ) * @mana_rate, format: '%n%u', precision: 4, units: { thousand: 'K', million: 'M' })%> </td>
   <td> <%= row[:parcels_count] %> </td>
   </tr>
 <%end%>

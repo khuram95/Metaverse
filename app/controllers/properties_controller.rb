@@ -1,7 +1,7 @@
 require 'httparty'
 
 class PropertiesController < ApplicationController
-  before_action :set_endpoint
+  before_action :set_endpoint, :mana_to_usd
 
   def index
     @data = top_bid_properties

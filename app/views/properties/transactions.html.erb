@@ -20,7 +20,7 @@
         <tr>
           <td> <%= truncate(row[:nft][:id], :length => 50) %> </td>
           <td> <img src="<%= row[:nft][:image] %>" style="height: 100px"> </td>
-          <td> <%= (row[:price].to_i / 1000000000000000000 ) %> </td>
+          <td> $<%= number_to_human((row[:price].to_i / 1000000000000000000 ) * @mana_rate, format: '%n%u', precision: 4, units: { thousand: 'K', million: 'M' })%> </td>
           <td> <%= row[:seller] %> </td>
           <td> <%= row[:buyer] %> </td>
           <td> <%= Time.at(row[:timestamp].to_i).strftime '%Y-%m-%d' %> </td>
@@ -32,7 +32,7 @@
           <tr>
             <td> <%=  truncate(row['nft']['id'], :length => 50) %> </td>
             <td> <img src="<%= row['nft']['image'] %>" style="height: 100px"> </td>
-            <td> <%= (row['order']['price'].to_i / 1000000000000000000 ) %> </td>
+            <td> $<%= number_to_human((row['order']['price'].to_i / 1000000000000000000 ) * @mana_rate, format: '%n%u', precision: 4, units: { thousand: 'K', million: 'M' })%> </td>
             <td> <%= row['order']['owner'] %> </td>
             <td> <%= Time.at(row['nft']['createdAt'].to_i/1000).strftime '%Y-%m-%d' %> </td>
           </tr>
